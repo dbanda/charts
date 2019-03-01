@@ -40,3 +40,13 @@ Return the apiVersion of deployment.
 {{- print "apps/v1" -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "workerlb-fullname" -}}
+{{- $name := default .Chart.Name .Values.WorkerLB.Name -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "livy-fullname" -}}
+{{- $name := default .Chart.Name .Values.Livy.Name -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
