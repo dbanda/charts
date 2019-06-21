@@ -58,6 +58,8 @@ spec:
         release: {{ .Release.Name | quote }}
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         component: "{{ .Release.Name }}-{{ .Values.Master.Component }}"
+      annotations:
+        configmap_checksum: {{ include (print $.Template.BasePath "/spark-master-configmap.yaml") $ | sha256sum }}
     spec:
       containers:
         - name: {{ template "master-fullname" . }}
@@ -80,3 +82,11 @@ spec:
             value: {{ .Values.Master.ServicePort | quote }}
           - name: SPARK_MASTER_WEBUI_PORT
             value: {{ .Values.WebUi.ContainerPort | quote }}
+          volumeMounts:
+          - name: config-default
+            mountPath: /opt/spark/conf/spark-defaults.conf
+            subPath: spark-defaults.conf
+      volumes:
+      - name: config-default
+        configMap:
+          name: {{ template "master-fullname" . }}-spark-defaults

@@ -50,11 +50,13 @@ The following table lists the configurable parameters of the Spark chart and the
 
 ### Spark WebUi
 
-|       Parameter       |           Description            |                         Default                          |
-|-----------------------|----------------------------------|----------------------------------------------------------|
-| `WebUi.Name`          | Spark webui name                 | `spark-webui`                                            |
-| `WebUi.ServicePort`   | k8s service port                 | `8080`                                                   |
-| `WebUi.ContainerPort` | Container listening port         | `8080`                                                   |
+|       Parameter                  |           Description               |                         Default                          |
+|----------------------------------|-------------------------------------|----------------------------------------------------------|
+| `WebUi.Name`                     | Spark webui name                    | `spark-webui`                                            |
+| `WebUi.ServicePort`              | k8s service port                    | `8080`                                                   |
+| `WebUi.ContainerPort`            | Container listening port            | `8080`                                                   |
+| `WebUI.ReverseProxy.Enabled`     | Enable reverse proxying URLs        | `false`                                                  |
+| `WebUI.ReverseProxy.FrontEndUrl` | Base URL for reverse proxy frontend | `null`                                                   |
 
 ### Spark Worker
 

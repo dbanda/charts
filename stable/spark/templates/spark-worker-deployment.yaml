@@ -21,6 +21,8 @@ spec:
         release: {{ .Release.Name | quote }}
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
+      annotations:
+        configmap_checksum: {{ include (print $.Template.BasePath "/spark-worker-configmap.yaml") $ | sha256sum }}
     spec:
       containers:
         - name: {{ template "worker-fullname" . }}
@@ -39,3 +41,11 @@ spec:
             value: {{ default "1g" .Values.Worker.ExecutorMemory | quote }}
           - name: SPARK_WORKER_WEBUI_PORT
             value: {{ .Values.WebUi.ContainerPort | quote }}
+          volumeMounts:
+          - name: config-default
+            mountPath: /opt/spark/conf/spark-defaults.conf
+            subPath: spark-defaults.conf
+      volumes:
+      - name: config-default
+        configMap:
+          name: {{ template "worker-fullname" . }}-spark-defaults

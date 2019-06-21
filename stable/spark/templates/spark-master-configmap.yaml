@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "master-fullname" . }}-spark-defaults
+data:
+  spark-defaults.conf: |
+    spark.app.id KubernetesSpark
+{{- if .Values.WebUi.ReverseProxy.Enabled }}
+    spark.ui.reverseProxy true
+    spark.ui.reverseProxyUrl {{ .Values.WebUi.ReverseProxy.FrontEndUrl }}
+{{- end }}
