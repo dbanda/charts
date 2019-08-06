@@ -1,5 +1,5 @@
 {{- if .Values.Livy.Enabled }}
-# Livy deployment 
+# Livy deployment
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -31,9 +31,7 @@ spec:
             - containerPort: {{ .Values.Livy.ContainerPort }}
               name: http
           resources:
-            requests:
-              cpu: "{{ .Values.Livy.Cpu }}"
-              memory: "{{ .Values.Livy.Memory }}"
+{{ toYaml .Values.Livy.Resources | indent 12 }}
           env:
             - name: SPARK_MASTER
               value: "spark://{{ template "master-fullname" . }}:{{ .Values.Master.ServicePort }}"
@@ -41,7 +39,7 @@ spec:
               value: "/opt/spark"
             - name : HADOOP_HOME
               value : "/opt/hadoop"
-            - name : SPARK_CONF_DIR 
+            - name : SPARK_CONF_DIR
               value : "/opt/spark/conf"
             - name : HOST
               value: "0.0.0.0"

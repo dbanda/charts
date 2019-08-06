@@ -41,8 +41,7 @@ The following table lists the configurable parameters of the Spark chart and the
 | `Master.ImageTag`       | Container image tag                | `v4`                                                      |
 | `Master.Replicas`       | k8s deployment replicas            | `1`                                                        |
 | `Master.Component`      | k8s selector key                   | `spark-master`                                             |
-| `Master.Cpu`            | container requested cpu            | `100m`                                                     |
-| `Master.Memory`         | container requested memory         | `1024Mi`                                                    |
+| `Master.Resources`      | container resources (cpu/memory)   | `{"requests": {"cpu": "100m", "memory": "1024Mi"}}`        |
 | `Master.ServicePort`    | k8s service port                   | `7077`                                                     |
 | `Master.ContainerPort`  | Container listening port           | `7077`                                                     |
 | `Master.DaemonMemory`   | Master JVM Xms and Xmx option      | `1g`                                                       |
@@ -66,8 +65,8 @@ The following table lists the configurable parameters of the Spark chart and the
 | `Worker.Replicas`            | k8s hpa and deployment replicas      | `3`                                                        |
 | `Worker.ReplicasMax`         | k8s hpa max replicas                 | `10`                                                       |
 | `Worker.Component`           | k8s selector key                     | `spark-worker`                                             |
-| `Worker.Cpu`                 | container requested cpu              | `100m`                                                     |
-| `Worker.Memory`              | container requested memory           | `2048Mi`                                                    |
+| `Worker.Resources`           | container resources (cpu/memory)     | `{"requests": {"cpu": "100m", "memory": "2048Mi"}}`        |
+|
 | `Worker.ContainerPort`       | Container listening port             | `7077`                                                     |
 | `Worker.CpuTargetPercentage` | k8s hpa cpu targetPercentage         | `50`                                                       |
 | `Worker.DaemonMemory`        | Worker JVM Xms and Xmx setting       | `1g`                                                       |
@@ -85,7 +84,7 @@ The following table lists the configurable parameters of the Spark chart and the
 | `Zeppelin.ImageTag`            | Container image tag              | `v4`                                                     |
 | `Zeppelin.Replicas`            | k8s deployment replicas          | `1`                                                      |
 | `Zeppelin.Component`           | k8s selector key                 | `zeppelin`                                               |
-| `Zeppelin.Cpu`                 | container requested cpu          | `100m`                                                   |
+| `Zeppelin.Resources`           | container resources (cpu/memory) | `{"requests": {"cpu": "100m", "memory": "2048Mi"}}`      |
 | `Zeppelin.ServicePort`         | k8s service port                 | `8080`                                                   |
 | `Zeppelin.ContainerPort`       | Container listening port         | `8080`                                                   |
 | `Zeppelin.Ingress.Enabled`     | if `true`, an ingress is created | `false`                                                  |
@@ -105,7 +104,7 @@ The following table lists the configurable parameters of the Spark chart and the
 | `Livy.Replicas`                | k8s deployment replicas          | `1`                                                      |
 | `Livy.ReplicasMax`             | k8s max number of replicas       | `3`                                                      |
 | `Liyy.Component`               | k8s selector key                 | `livy`                                                   |
-| `Livy.Cpu`                     | container requested cpu          | `100m`                                                   |
+| `Liyy.Resources`               | container resources (cpu/memory) | `{"requests": {"cpu": "100m", "memory": "1024Mi"}}`      |
 | `Livy.ServicePort`             | k8s service port                 | `8998`                                                   |
 | `Livy.ServiceType `            | Kubernetes Service type          | `LoadBalancer`                                           |
 

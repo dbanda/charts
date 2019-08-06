@@ -12,8 +12,13 @@ Master:
   ImageTag: "v4_mini"
   Replicas: 1
   Component: "spark-master"
-  Cpu: "100m"
-  Memory: "1024Mi"
+  Resources:
+    requests:
+      cpu: "100m"
+      memory: "1024Mi"
+#    limits:
+#      cpu: "400m"
+#      memory: "2048Mi"
   ServicePort: 7077
   ContainerPort: 7077
   # Set Master JVM memory. Default 1g
@@ -37,8 +42,13 @@ Worker:
   ImageTag: "v4_mini"
   Replicas: 2
   Component: "spark-worker"
-  Cpu: "100m"
-  Memory: "2048Mi"
+  Resources:
+    requests:
+      cpu: "100m"
+      memory: "2048Mi"
+#    limits:
+#      cpu: "400m"
+#      memory: "2048Mi"
   ContainerPort: 8081
   # Set Worker JVM memory. Default 1g
   # DaemonMemory: 1g
@@ -56,8 +66,13 @@ Zeppelin:
   ImageTag: "v4_mini"
   Replicas: 1
   Component: "zeppelin"
-  Cpu: "100m"
-  Memory: "2048Mi"
+  Resources:
+    requests:
+      cpu: "100m"
+      memory: "2048Mi"
+#    limits:
+#      cpu: "400m"
+#      memory: "2048Mi"
   ServicePort: 8080
   ContainerPort: 8080
   ServiceType: LoadBalancer
@@ -107,8 +122,13 @@ Livy:
   ImageTag: "v4_mini"
   Replicas: 1
   Component: "livy"
-  Cpu: "100m"
-  Memory: "1024Mi"
+  Resources:
+    requests:
+      cpu: "100m"
+      memory: "1024Mi"
+#    limits:
+#      cpu: "400m"
+#      memory: "2048Mi"
   ServicePort: 8998
   ContainerPort: 8998
   ServiceType: LoadBalancer

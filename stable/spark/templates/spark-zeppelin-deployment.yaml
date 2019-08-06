@@ -48,9 +48,7 @@ spec:
             - containerPort: {{ .Values.Zeppelin.ContainerPort }}
               name: http
           resources:
-            requests:
-              cpu: "{{ .Values.Zeppelin.Cpu }}"
-              memory: "{{ .Values.Zeppelin.Memory }}"
+{{ toYaml .Values.Zeppelin.Resources | indent 12 }}
           env:
             - name: SPARK_MASTER
               value: "spark://{{ template "master-fullname" . }}:{{ .Values.Master.ServicePort }}"
