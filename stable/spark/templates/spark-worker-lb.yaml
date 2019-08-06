@@ -2,6 +2,11 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "workerlb-fullname" . }}
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
 spec:
   selector:
     component: "{{ .Release.Name }}-{{ .Values.Worker.Component }}"
