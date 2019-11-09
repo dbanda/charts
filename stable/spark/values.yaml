@@ -58,7 +58,7 @@ Zeppelin:
   Component: "zeppelin"
   Cpu: "100m"
   Memory: "2048Mi"
-  ServicePort: 8080
+  ServicePort: 8090
   ContainerPort: 8080
   ServiceType: LoadBalancer
   Enabled: true
