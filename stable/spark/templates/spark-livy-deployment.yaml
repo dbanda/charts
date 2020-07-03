@@ -1,6 +1,6 @@
 {{- if .Values.Livy.Enabled }}
 # Livy deployment 
-apiVersion: extensions/v1beta1
+apiVersion: {{ template "deployment.apiVersion" . }}
 kind: Deployment
 metadata:
   name: {{ template "livy-fullname" . }}
